@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mockCertificates, mockClients, mockProjects } from '../utils/mockData';
-import { FiDownload, FiMail, FiFileText } from 'react-icons/fi';
+import { FiMail, FiFileText } from 'react-icons/fi';
 import './Certificates.css';
 
 const Certificates = () => {
