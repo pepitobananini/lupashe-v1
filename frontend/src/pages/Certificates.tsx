@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { mockCertificates, mockClients, mockProjects } from '../utils/mockData';
-import { FiDownload, FiMail } from 'react-icons/fi';
+import { FiDownload, FiMail, FiFileText } from 'react-icons/fi';
 import './Certificates.css';
 
 const Certificates = () => {
   const [certificates] = useState(mockCertificates);
   const [clientFilter, setClientFilter] = useState('');
   const [projectFilter, setProjectFilter] = useState('');
+  const [showGenerator, setShowGenerator] = useState(false);
 
   const filteredCertificates = certificates.filter(cert => {
     if (clientFilter && cert.clientId !== clientFilter) return false;
@@ -18,11 +19,26 @@ const Certificates = () => {
     <div className="certificates-page">
       <div className="page-header">
         <h1>Constancias</h1>
-        <button className="btn-primary">
-          <FiDownload className="btn-icon" />
-          <span>Generar Constancias</span>
+        <button className="btn-primary" onClick={() => setShowGenerator(!showGenerator)}>
+          <FiFileText className="btn-icon" />
+          <span>{showGenerator ? 'Ocultar Generador' : 'Generar Constancias'}</span>
         </button>
       </div>
+
+      {showGenerator && (
+        <div className="generator-container">
+          <div className="generator-header">
+            <h2>Generador de Constancias DC-3</h2>
+            <button className="close-btn" onClick={() => setShowGenerator(false)}>×</button>
+          </div>
+          <iframe
+            src="https://lupashe-generadordeconstancias.vercel.app"
+            title="Generador de Constancias LUPASHE"
+            className="generator-iframe"
+            allow="clipboard-read; clipboard-write"
+          />
+        </div>
+      )}
 
       <div className="filters-bar">
         <div className="filter-group">
