@@ -94,7 +94,6 @@ const Dashboard = () => {
   }, []);
 
   // Calcular indicadores de cumplimiento
-  const completedProjects = mockProjects.filter(p => p.status === 'completado' || p.status === 'finalizado').length;
   const activeProjectsCount = mockProjects.filter(p => p.status === 'activo').length;
   const totalProjects = mockProjects.length;
   const activePercentage = totalProjects > 0 ? Math.round((activeProjectsCount / totalProjects) * 100) : 0;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mockFormSubmissions } from '../utils/mockData';
-import { FiUpload, FiFileText } from 'react-icons/fi';
+import { FiUpload } from 'react-icons/fi';
 import './Forms.css';
 
 const Forms = () => {

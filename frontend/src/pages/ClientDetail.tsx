@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { mockClients, mockProjects, mockTrainings, mockFormSubmissions, mockCertificates } from '../utils/mockData';
-import { FiArrowLeft, FiUsers, FiFolder, FiBookOpen, FiFileText, FiAward } from 'react-icons/fi';
+import { FiArrowLeft, FiFolder, FiBookOpen, FiFileText, FiAward } from 'react-icons/fi';
 import './ClientDetail.css';
 
 const ClientDetail = () => {

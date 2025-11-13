@@ -42,7 +42,7 @@ export const mockAuthApi = {
     };
   },
   
-  refresh: async (data: { refreshToken: string }) => {
+  refresh: async (_data: { refreshToken: string }) => {
     await delay(100);
     return {
       data: {

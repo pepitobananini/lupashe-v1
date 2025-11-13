@@ -11,7 +11,7 @@ interface Project {
   description?: string;
   status: string;
   startDate?: string;
-  endDate?: string;
+  endDate?: string | null;
   progress?: number;
   client?: {
     id: string;

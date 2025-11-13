@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mockTrainings } from '../utils/mockData';
-import { FiPlus, FiCalendar, FiUser } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import './Trainings.css';
 
 const Trainings = () => {
