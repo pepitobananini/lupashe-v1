@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  CONSULTOR
+  CAPACITADOR
+  ADMINISTRATIVO
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  email        String?  @unique
+  passwordHash String
+  role         UserRole @default(CONSULTOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Client {
+  id          String   @id @default(cuid())
+  name        String
+  rfc         String?
+  sector      String?
+  contactName String?
+  contactEmail String?
+  contactPhone String?
+  address     String?
+  projects    Project[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  name        String
+  description String?
+  status      String    @default("activo")
+  startDate   DateTime?
+  endDate     DateTime?
+  trainings   Training[]
+  formSubmissions FormSubmission[]
+  reportDrafts ReportDraft[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Training {
+  id          String    @id @default(cuid())
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id])
+  name        String
+  type        String?
+  date        DateTime?
+  instructorName String?
+  location    String?
+  participants Participant[]
+  certificates Certificate[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Participant {
+  id           String   @id @default(cuid())
+  trainingId   String
+  training     Training @relation(fields: [trainingId], references: [id])
+  fullName     String
+  position     String?
+  area         String?
+  email        String?
+  certificates Certificate[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model CertificateTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  type        String
+  htmlTemplate String
+  certificates Certificate[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certificate {
+  id             String   @id @default(cuid())
+  participantId  String
+  participant    Participant @relation(fields: [participantId], references: [id])
+  trainingId     String
+  training       Training    @relation(fields: [trainingId], references: [id])
+  templateId     String
+  template       CertificateTemplate @relation(fields: [templateId], references: [id])
+  pdfUrl         String?
+  sentToClient   Boolean @default(false)
+  sentToInstructor Boolean @default(false)
+  sentAt         DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model FormDefinition {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  schemaJson  Json
+  version     Int       @default(1)
+  submissions FormSubmission[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model FormSubmission {
+  id              String   @id @default(cuid())
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id])
+  formDefinitionId String
+  formDefinition  FormDefinition @relation(fields: [formDefinitionId], references: [id])
+  rawFileUrl      String?
+  dataJson        Json?
+  source          String   @default("OCR")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model ReportTemplate {
+  id            String   @id @default(cuid())
+  name          String
+  description   String?
+  structureJson Json
+  drafts        ReportDraft[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ReportDraft {
+  id              String   @id @default(cuid())
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id])
+  reportTemplateId String
+  reportTemplate  ReportTemplate @relation(fields: [reportTemplateId], references: [id])
+  content         String
+  status          String   @default("draft")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  companyName String
+  contactName String?
+  email       String?
+  phone       String?
+  sector      String?
+  city        String?
+  source      String?
+  status      String? @default("nuevo")
+  campaigns   CampaignLead[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Campaign {
+  id             String   @id @default(cuid())
+  name           String
+  channel        String   @default("email")
+  emailSubject   String?
+  emailBodyTemplate String?
+  leads          CampaignLead[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CampaignLead {
+  id          String   @id @default(cuid())
+  campaignId  String
+  campaign    Campaign @relation(fields: [campaignId], references: [id])
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+  lastEmailStatus String? @default("pendiente")
+  lastEmailSentAt DateTime?
+  openCount   Int      @default(0)
+  replyCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

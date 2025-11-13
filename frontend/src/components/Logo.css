@@ -1,0 +1,213 @@
+@import '../styles/variables.css';
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-svg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.logo-text {
+  display: flex;
+  align-items: baseline;
+  font-weight: 700;
+  font-size: 2.2em;
+  font-style: italic;
+  letter-spacing: -1px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  z-index: 2;
+  line-height: 1.1;
+}
+
+.logo-lupa {
+  color: var(--lupashe-blue);
+  text-transform: lowercase;
+  margin-right: 2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.logo-she {
+  color: var(--lupashe-green);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Lupa - Círculo del lente */
+.logo-svg::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-30%);
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--lupashe-green);
+  border-radius: 50%;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(85, 130, 54, 0.35) 0%, rgba(85, 130, 54, 0.2) 25%, rgba(85, 130, 54, 0.08) 50%, transparent 75%);
+  box-shadow: inset 0 0 30px rgba(85, 130, 54, 0.3);
+}
+
+/* Mango de la lupa */
+.logo-svg::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 22%;
+  width: 5px;
+  height: 42px;
+  background: var(--lupashe-green);
+  border-radius: 3px;
+  transform: rotate(38deg);
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.logo-tagline {
+  font-size: 0.7em;
+  color: var(--lupashe-green);
+  font-style: italic;
+  font-weight: 500;
+  margin-top: 6px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  opacity: 0.95;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.logo-trademark {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.45em;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 4;
+  font-weight: normal;
+  font-family: serif;
+}
+
+/* Tamaños */
+.logo-small {
+  min-height: 50px;
+}
+
+.logo-small .logo-text {
+  font-size: 1.1em;
+}
+
+.logo-small .logo-svg {
+  padding: 5px;
+}
+
+.logo-small .logo-svg::before {
+  width: 60px;
+  height: 60px;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-40%);
+  border-width: 2px;
+}
+
+.logo-small .logo-svg::after {
+  width: 3px;
+  height: 25px;
+  bottom: -3px;
+  right: 20%;
+}
+
+.logo-small .logo-tagline {
+  font-size: 0.45em;
+  margin-top: 2px;
+}
+
+.logo-medium {
+  min-height: 90px;
+}
+
+.logo-medium .logo-text {
+  font-size: 2em;
+}
+
+.logo-medium .logo-svg {
+  padding: 10px;
+}
+
+.logo-medium .logo-svg::before {
+  width: 100px;
+  height: 100px;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-30%);
+}
+
+.logo-medium .logo-svg::after {
+  width: 5px;
+  height: 42px;
+  bottom: 2px;
+  right: 22%;
+}
+
+.logo-large {
+  min-height: 140px;
+}
+
+.logo-large .logo-text {
+  font-size: 3em;
+}
+
+.logo-large .logo-svg {
+  padding: 15px;
+}
+
+.logo-large .logo-svg::before {
+  width: 150px;
+  height: 150px;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-30%);
+  border-width: 4px;
+}
+
+.logo-large .logo-svg::after {
+  width: 7px;
+  height: 65px;
+  bottom: 4px;
+  right: 20%;
+}
+
+.logo-large .logo-tagline {
+  font-size: 0.85em;
+  margin-top: 8px;
+}
+

@@ -1,0 +1,39 @@
+/* ============================================
+   LUPASHE - Manual de Identidad Gráfica
+   Variables de Colores Corporativos
+   ============================================ */
+
+:root {
+  /* Colores Primarios Institucionales */
+  --lupashe-blue: #001689;
+  --lupashe-green: #558236;
+  
+  /* Colores de Texto */
+  --lupashe-black-85: rgba(0, 0, 0, 0.85);
+  --lupashe-black-61: rgba(0, 0, 0, 0.61);
+  
+  /* Variaciones para Hover (tonos más oscuros) */
+  --lupashe-blue-dark: #001155;
+  --lupashe-green-dark: #3d5f28;
+  
+  /* Fondos Neutros */
+  --lupashe-bg-white: #ffffff;
+  --lupashe-bg-light: #f8f9fa;
+  --lupashe-bg-gray: #f5f5f5;
+  
+  /* Bordes */
+  --lupashe-border: rgba(0, 0, 0, 0.1);
+  --lupashe-border-light: rgba(0, 0, 0, 0.05);
+  
+  /* Sombras Neutras (muy suaves) */
+  --lupashe-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --lupashe-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --lupashe-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+  
+  /* Estados */
+  --lupashe-success: var(--lupashe-green);
+  --lupashe-primary: var(--lupashe-blue);
+  --lupashe-text-primary: var(--lupashe-black-85);
+  --lupashe-text-secondary: var(--lupashe-black-61);
+}
+
